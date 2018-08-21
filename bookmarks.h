@@ -17,7 +17,6 @@ along with this program; if not, see {http://www.gnu.org/licenses/}. */
 #ifndef BOOKMARKS_H
 #define BOOKMARKS_H
 
-#include "bookmarkmanage.h"
 #include "bookmarkdialog.h"
 
 #include <QWidget>
@@ -29,8 +28,8 @@ along with this program; if not, see {http://www.gnu.org/licenses/}. */
 #include <QTableWidgetItem>
 #include <QMessageBox>
 
-
 #include "globalfunctions.h"
+#include "bookmarkmanage.h"
 #include "utilities.h"
 
 //#include "corefm/mimeutils.h"

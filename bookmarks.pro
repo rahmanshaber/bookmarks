@@ -23,13 +23,11 @@ FORMS += \
 
 HEADERS += \
     bookmarkdialog.h \
-    bookmarkmanage.h \
     bookmarks.h
 
 SOURCES += \
     main.cpp \
     bookmarkdialog.cpp \
-    bookmarkmanage.cpp \
     bookmarks.cpp \
 
 RESOURCES += \

@@ -17,13 +17,12 @@ along with this program; if not, see {http://www.gnu.org/licenses/}. */
 #ifndef BOOKMARKDIALOG_H
 #define BOOKMARKDIALOG_H
 
-#include "bookmarkmanage.h"
-
 #include <QWidget>
 #include <QDialog>
 #include <QTimer>
 
 #include "utilities.h"
+#include "bookmarkmanage.h"
 
 
 namespace Ui {
