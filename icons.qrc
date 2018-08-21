@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icons/bookit.svg</file>
+        <file>icons/delete.svg</file>
+        <file>icons/edit.svg</file>
+        <file>icons/tools.svg</file>
+        <file>icons/Bookmarks.svg</file>
+        <file>icons/new_section.svg</file>
+        <file>icons/refresh.svg</file>
+    </qresource>
+</RCC>
