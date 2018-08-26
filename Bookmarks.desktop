@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Bookmarks
+Comment=Bookmarks app for bookmarking files from Coreapps.
+Exec=bookmarks
+Icon=/usr/share/icons/CoreApps/Bookmarks.svg
+Type=Application
+Categories=Utility;Core;Qt;
+Terminal=false
+StartupNotify=true
