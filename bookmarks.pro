@@ -56,7 +56,7 @@ unix {
         desktop.path = $$PREFIX/share/applications/
         desktop.files = "Bookmarks.desktop" "Bookmark It.desktop"
 
-        icons.path = $$PREFIX/share/icons/CoreApps/
+        icons.path = $$PREFIX/share/coreapps/icons/
         icons.files = icons/Bookmarks.svg icons/BookmarkIt.svg
 
         INSTALLS += target icons desktop
