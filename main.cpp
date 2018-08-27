@@ -19,6 +19,8 @@ along with this program; if not, see {http://www.gnu.org/licenses/}. */
 #include <QApplication>
 #include <QFont>
 #include <QStyleFactory>
+#include <QCommandLineParser>
+#include <QCommandLineOption>
 
 #include <cprime/utilities.h>
 #include <cprime/settingsmanage.h>
@@ -57,8 +59,32 @@ int main(int argc, char *argv[])
     app.setOrganizationName("CoreBox");
     app.setApplicationName("Bookmarks");
 
-    bookmarks e;
-    e.show();
+    QCommandLineParser parser;
+    parser.addHelpOption();
+    parser.addVersionOption();
+
+    parser.addOption( QCommandLineOption( QStringList( ) << "bookIt", "Bookmark file" ) );
+
+    const QString files = "[FILE1, FILE2,...]";
+    parser.addPositionalArgument("files", files, files);
+
+    parser.process(app);
+
+    QStringList args = parser.positionalArguments();
+
+    QStringList paths;
+    foreach (QString arg, args) {
+      QFileInfo info(arg);
+      paths.push_back(info.absoluteFilePath());
+    }
+
+    bookmarks *bk = new bookmarks;
+
+    if ( parser.isSet( "bookIt" ) ) {
+        bk->sendFiles(paths);
+    } else {
+        bk->show( );
+    }
 
     return app.exec();
 }
