@@ -26,11 +26,7 @@ along with this program; if not, see {http://www.gnu.org/licenses/}. */
 #include <QTableWidgetItem>
 #include <QMessageBox>
 
-#include <cprime/utilities.h>
-#include <cprime/settingsmanage.h>
 #include <cprime/bookmarkmanage.h>
-#include <cprime/globalfunctions.h>
-
 
 namespace Ui {
 class bookmarks;

@@ -17,6 +17,10 @@ along with this program; if not, see {http://www.gnu.org/licenses/}. */
 #include "bookmarks.h"
 #include "ui_bookmarks.h"
 
+#include <cprime/utilities.h>
+#include <cprime/settingsmanage.h>
+#include <cprime/globalfunctions.h>
+#include <cprime/bookmarkdialog.h>
 
 bookmarks::bookmarks(QWidget *parent) :QWidget(parent),ui(new Ui::bookmarks)
 {
@@ -161,18 +165,17 @@ void bookmarks::on_addSection_clicked()
 
 void bookmarks::on_deleteSection_clicked()
 {
-//    QMessageBox message(QMessageBox::Question, tr("Delete Section"), "Do you want to delete this section?", QMessageBox::No | QMessageBox::Yes);
-//    message.setWindowIcon(QIcon(":/app/icons/app-icons/Bookmarks.svg"));
-//    message.setStyleSheet(Utilities::getStylesheetFileContent(Utilities::StyleAppName::DialogStyle));
+    QMessageBox message(QMessageBox::Question, tr("Delete Section"), "Do you want to delete this section?", QMessageBox::No | QMessageBox::Yes);
+    message.setWindowIcon(QIcon(":/icons/Bookmarks.svg"));
+    message.setStyleSheet(Utilities::getStylesheetFileContent(Utilities::StyleAppName::DialogStyle));
 
-//    int merge = message.exec();
+    int merge = message.exec();
 
-    int merge = 1;
     if (merge == QMessageBox::Yes) {
         bk.delSection(ui->section->currentItem()->text());
         ui->section->takeItem(ui->section->currentIndex().row());
         // Function from utilities.cpp
-//        Utilities::messageEngine("Section Deleted", Utilities::MessageType::Info);
+        Utilities::messageEngine("Section Deleted", Utilities::MessageType::Info);
     }
     sectionRefresh();
 }
@@ -229,12 +232,11 @@ void bookmarks::on_bookmarkEdit_clicked()
 
 void bookmarks::on_bookmarkDelete_clicked()
 {
-//    QMessageBox message(QMessageBox::Question, tr("Delete Bookmark"), "Do you want to delete the bookmark?", QMessageBox::No | QMessageBox::Yes);
-//    message.setWindowIcon(QIcon(":/app/icons/app-icons/Bookmarks.svg"));
-//    message.setStyleSheet(Utilities::getStylesheetFileContent(Utilities::StyleAppName::DialogStyle));
+    QMessageBox message(QMessageBox::Question, tr("Delete Bookmark"), "Do you want to delete the bookmark?", QMessageBox::No | QMessageBox::Yes);
+    message.setWindowIcon(QIcon(":/app/icons/app-icons/Bookmarks.svg"));
+    message.setStyleSheet(Utilities::getStylesheetFileContent(Utilities::StyleAppName::DialogStyle));
 
-//    int merge = message.exec();
-    int merge = 1;
+    int merge = message.exec();
     if (merge == QMessageBox::Yes) {
         bk.delbookmark(ui->boklist->selectedItems().at(0)->text(), ui->section->currentItem()->text());
         int r = ui->boklist->currentItem()->row();
@@ -400,6 +402,7 @@ void bookmarks::reload()
 void bookmarks::sendFiles(const QStringList &paths)
 {
     foreach ( QString str, paths ) {
-//        callBookMarkDialog(this, str);
+        bookmarkDialog bkd;
+        bkd.callBookMarkDialog(this, str);
     }
 }
