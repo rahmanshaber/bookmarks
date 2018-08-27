@@ -17,8 +17,6 @@ along with this program; if not, see {http://www.gnu.org/licenses/}. */
 #ifndef BOOKMARKS_H
 #define BOOKMARKS_H
 
-#include "bookmarkdialog.h"
-
 #include <QWidget>
 #include <QDir>
 #include <QFile>
@@ -28,11 +26,10 @@ along with this program; if not, see {http://www.gnu.org/licenses/}. */
 #include <QTableWidgetItem>
 #include <QMessageBox>
 
-#include "globalfunctions.h"
-#include "bookmarkmanage.h"
-#include "utilities.h"
-
-//#include "corefm/mimeutils.h"
+#include <cprime/utilities.h>
+#include <cprime/settingsmanage.h>
+#include <cprime/bookmarkmanage.h>
+#include <cprime/globalfunctions.h>
 
 
 namespace Ui {
@@ -49,7 +46,6 @@ public:
 
     void sendFiles(const QStringList &paths);
     void saveBookMark(QString section, QString bookmarkName, QString bookmarkPath, QString bookmarkIcon);
-    void callBookMarkDialog(QWidget *parent, const QString &currentPath);
     void reload();
 
 private slots:

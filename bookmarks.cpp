@@ -30,7 +30,7 @@ bookmarks::bookmarks(QWidget *parent) :QWidget(parent),ui(new Ui::bookmarks)
     ui->boklist->setFocusPolicy(Qt::NoFocus);
 
     // set stylesheet from style.qrc
-    setStyleSheet(Utilities::getStylesheetFileContent(":/appStyle/style/Bookmarks.qss"));
+    setStyleSheet(Utilities::getStylesheetFileContent(Utilities::StyleAppName::BookmarksStyle));
 
     // set window size
     int x = static_cast<int>(Utilities::screensize().width()  * .8);
@@ -74,7 +74,7 @@ void bookmarks::sectionRefresh()
     ui->section->addItems(bk.getBookSections());
 
     for (int i = 0; i < ui->section->count(); ++i) {
-        ui->section->item(i)->setIcon((QIcon(":/icons/bookit.svg")));
+        ui->section->item(i)->setIcon((QIcon(":/icons/section.svg")));
     }
 
     ui->section->setCurrentRow(selectedIndex);
@@ -91,39 +91,6 @@ void bookmarks::sectionRefresh()
 void bookmarks::on_reload_clicked()
 {
     sectionRefresh();
-}
-
-/**
- * @brief Call add bookmark dialog from any apps by giving the path to book it.
- * @brief And also the apps icon.
- * @param currentPath : Path which needs to bookmarked.
- * @param iconPath : Apps icon path from resource.
- */
-void bookmarks::callBookMarkDialog(QWidget *parent, const QString &currentPath)
-{
-    QFileInfo info(currentPath);
-    BookmarkManage bm;
-    const QString str = bm.checkingBookPathEx(currentPath);
-    if (str.isEmpty() || str.isNull()) {
-        bookmarkDialog *bkdlg = new bookmarkDialog(parent);
-        QIcon ico = Utilities::getFileIcon(currentPath);
-        QPixmap pix = ico.pixmap(QSize(100, 80));
-        bkdlg->setBookPath(currentPath);
-        bkdlg->setBookName(info.fileName() + "");
-        bkdlg->checkPath();
-
-        if (bkdlg->exec() == 0) {
-            if (bkdlg->accepted) {
-                bk.addBookmark(bkdlg->getSectionName(), bkdlg->getBookName(), currentPath);
-            } else if (!bkdlg->accepted) {
-                bkdlg->close();
-            }
-        }
-        sectionRefresh();
-    } else {
-        // Function from utilities.cpp
-        messageEngine(str, Utilities::MessageType::Info);
-    }
 }
 
 void bookmarks::on_selectSection_currentIndexChanged(const QString &arg1)
@@ -194,11 +161,13 @@ void bookmarks::on_addSection_clicked()
 
 void bookmarks::on_deleteSection_clicked()
 {
-    QMessageBox message(QMessageBox::Question, tr("Delete Section"), "Do you want to delete this section?", QMessageBox::No | QMessageBox::Yes);
-    message.setWindowIcon(QIcon(":/app/icons/app-icons/Bookmarks.svg"));
-    message.setStyleSheet(Utilities::getStylesheetFileContent(":/appStyle/style/Dialog.qss"));
+//    QMessageBox message(QMessageBox::Question, tr("Delete Section"), "Do you want to delete this section?", QMessageBox::No | QMessageBox::Yes);
+//    message.setWindowIcon(QIcon(":/app/icons/app-icons/Bookmarks.svg"));
+//    message.setStyleSheet(Utilities::getStylesheetFileContent(Utilities::StyleAppName::DialogStyle));
 
-    int merge = message.exec();
+//    int merge = message.exec();
+
+    int merge = 1;
     if (merge == QMessageBox::Yes) {
         bk.delSection(ui->section->currentItem()->text());
         ui->section->takeItem(ui->section->currentIndex().row());
@@ -212,7 +181,7 @@ void bookmarks::on_sectionDone_clicked()
 {
     bk.addSection(ui->sectionName->text());
     ui->section->addItem(ui->sectionName->text());
-    ui->section->item(ui->section->count() - 1)->setIcon(QIcon(":/icons/bookit.svg"));
+    ui->section->item(ui->section->count() - 1)->setIcon(QIcon(":/icons/section.svg"));
     ui->sectionName->setText("");
     ui->sectionStatus->setText("");
     ui->addSectionBox->setVisible(false);
@@ -260,11 +229,12 @@ void bookmarks::on_bookmarkEdit_clicked()
 
 void bookmarks::on_bookmarkDelete_clicked()
 {
-    QMessageBox message(QMessageBox::Question, tr("Delete Bookmark"), "Do you want to delete the bookmark?", QMessageBox::No | QMessageBox::Yes);
-    message.setWindowIcon(QIcon(":/app/icons/app-icons/Bookmarks.svg"));
-    message.setStyleSheet(Utilities::getStylesheetFileContent(":/appStyle/style/Dialog.qss"));
+//    QMessageBox message(QMessageBox::Question, tr("Delete Bookmark"), "Do you want to delete the bookmark?", QMessageBox::No | QMessageBox::Yes);
+//    message.setWindowIcon(QIcon(":/app/icons/app-icons/Bookmarks.svg"));
+//    message.setStyleSheet(Utilities::getStylesheetFileContent(Utilities::StyleAppName::DialogStyle));
 
-    int merge = message.exec();
+//    int merge = message.exec();
+    int merge = 1;
     if (merge == QMessageBox::Yes) {
         bk.delbookmark(ui->boklist->selectedItems().at(0)->text(), ui->section->currentItem()->text());
         int r = ui->boklist->currentItem()->row();
@@ -369,9 +339,9 @@ void bookmarks::on_pathName_textChanged(const QString &arg1)
 
 void bookmarks::on_boklist_itemDoubleClicked(QTableWidgetItem *item)
 {
-    QString s = bk.bookmarkPath(ui->section->currentItem()->text(), ui->boklist->item(item->row(),0)->text());
+    QString path = bk.bookmarkPath(ui->section->currentItem()->text(), ui->boklist->item(item->row(),0)->text());
     // Function from utilities.cpp
-    GlobalFunc::appSelectionEngine(s);
+    GlobalFunc::appSelectionEngine(path);
 }
 
 void bookmarks::on_boklist_itemSelectionChanged()
@@ -430,6 +400,6 @@ void bookmarks::reload()
 void bookmarks::sendFiles(const QStringList &paths)
 {
     foreach ( QString str, paths ) {
-        callBookMarkDialog(this, str);
+//        callBookMarkDialog(this, str);
     }
 }

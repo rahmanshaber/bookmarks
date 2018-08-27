@@ -14,8 +14,8 @@
    <string>Bookmarks</string>
   </property>
   <property name="windowIcon">
-   <iconset>
-    <normaloff>:/app/icons/app-icons/Bookmarks.svg</normaloff>:/app/icons/app-icons/Bookmarks.svg</iconset>
+   <iconset resource="icons.qrc">
+    <normaloff>:/icons/Bookmarks.svg</normaloff>:/icons/Bookmarks.svg</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true"/>
