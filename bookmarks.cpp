@@ -112,6 +112,8 @@ void bookmarks::on_section_itemClicked(QListWidgetItem *item)
         ui->deleteSection->setEnabled(true);
     }
     ui->selectedSection->setText(item->text());
+    this->setWindowTitle(item->text() + " - Bookmarks");
+
     QStringList list = bk.getBookNames(item->text());
     int count = list.count();
     if (ui->boklist->selectedItems().count() > 0) {
