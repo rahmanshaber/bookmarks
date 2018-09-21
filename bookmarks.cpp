@@ -112,6 +112,8 @@ void bookmarks::on_section_itemClicked(QListWidgetItem *item)
         ui->deleteSection->setEnabled(true);
     }
     ui->selectedSection->setText(item->text());
+    this->setWindowTitle(item->text() + " - Bookmarks");
+
     QStringList list = bk.getBookNames(item->text());
     int count = list.count();
     if (ui->boklist->selectedItems().count() > 0) {
@@ -343,7 +345,7 @@ void bookmarks::on_boklist_itemDoubleClicked(QTableWidgetItem *item)
 {
     QString path = bk.bookmarkPath(ui->section->currentItem()->text(), ui->boklist->item(item->row(),0)->text());
     // Function from utilities.cpp
-    GlobalFunc::appSelectionEngine(path);
+    GlobalFunc::appSelectionEngine(path,this);
 }
 
 void bookmarks::on_boklist_itemSelectionChanged()
