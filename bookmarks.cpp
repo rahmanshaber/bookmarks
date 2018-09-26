@@ -355,10 +355,14 @@ void bookmarks::on_boklist_itemSelectionChanged()
 
     if (sec == 1) {
         ui->bookmarkDelete->setVisible(true);
+        ui->bookmarkDelete->setEnabled(true);
         ui->bookmarkEdit->setVisible(true);
+        ui->bookmarkEdit->setEnabled(true);
     } else {
         ui->bookmarkDelete->setVisible(false);
+        ui->bookmarkDelete->setEnabled(false);
         ui->bookmarkEdit->setVisible(false);
+        ui->bookmarkEdit->setEnabled(false);
     }
 }
 
