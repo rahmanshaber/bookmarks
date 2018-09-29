@@ -22,6 +22,7 @@ along with this program; if not, see {http://www.gnu.org/licenses/}. */
 #include <cprime/globalfunctions.h>
 #include <cprime/bookmarkdialog.h>
 
+
 bookmarks::bookmarks(QWidget *parent) :QWidget(parent),ui(new Ui::bookmarks)
 {
     ui->setupUi(this);
@@ -31,6 +32,8 @@ bookmarks::bookmarks(QWidget *parent) :QWidget(parent),ui(new Ui::bookmarks)
     ui->deleteSection->setVisible(false);
     ui->addSection->setVisible(false);
     ui->cTools->setChecked(false);
+    ui->bookmarkDelete->setVisible(false);
+    ui->bookmarkEdit->setVisible(false);
     ui->boklist->setFocusPolicy(Qt::NoFocus);
 
     // set stylesheet from style.qrc

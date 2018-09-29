@@ -54,10 +54,10 @@ unix {
         target.path = $$BINDIR
 
         desktop.path = $$PREFIX/share/applications/
-        desktop.files = "Bookmarks.desktop" "Bookmark It.desktop"
+        desktop.files = "bookmarks.desktop" "bookmark it.desktop"
 
         icons.path = $$PREFIX/share/coreapps/icons/
-        icons.files = icons/Bookmarks.svg icons/BookmarkIt.svg
+        icons.files = icons/bookmarks.svg
 
         INSTALLS += target icons desktop
 }

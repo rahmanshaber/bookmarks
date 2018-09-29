@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="icons.qrc">
-    <normaloff>:/icons/Bookmarks.svg</normaloff>:/icons/Bookmarks.svg</iconset>
+    <normaloff>:/icons/bookmarks.svg</normaloff>:/icons/bookmarks.svg</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true"/>
@@ -96,7 +96,7 @@
         </property>
         <property name="icon">
          <iconset resource="icons.qrc">
-          <normaloff>:/icons/Bookmarks.svg</normaloff>:/icons/Bookmarks.svg</iconset>
+          <normaloff>:/icons/bookmarks.svg</normaloff>:/icons/bookmarks.svg</iconset>
         </property>
         <property name="iconSize">
          <size>

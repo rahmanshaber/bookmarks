@@ -1,7 +1,7 @@
 # Bookmarks
 An app of CoreApps family.Bookmarks app for bookmarking files.
 
-<img src="Bookmarks.png" width="500">
+<img src="bookmark.png" width="500">
 
 ### Download
 
