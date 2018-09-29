@@ -1,9 +1,0 @@
-[Desktop Entry]
-Name=Bookmark It
-Comment=Bookmarks app for bookmarking system files from Coreapps.
-Exec=bookmarks --bookIt %F
-Icon=/usr/share/coreapps/icons/BookmarkIt.svg
-Type=Application
-Categories=Utility;Qt;
-Terminal=false
-StartupNotify=true
