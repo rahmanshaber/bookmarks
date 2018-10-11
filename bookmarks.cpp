@@ -171,7 +171,7 @@ void bookmarks::on_addSection_clicked()
 void bookmarks::on_deleteSection_clicked()
 {
     QMessageBox message(QMessageBox::Question, tr("Delete Section"), "Do you want to delete this section?", QMessageBox::No | QMessageBox::Yes);
-    message.setWindowIcon(QIcon(":/icons/Bookmarks.svg"));
+    message.setWindowIcon(QIcon(":/icons/bookmarks.svg"));
     message.setStyleSheet(Utilities::getStylesheetFileContent(Utilities::StyleAppName::DialogStyle));
 
     int merge = message.exec();
@@ -238,7 +238,7 @@ void bookmarks::on_bookmarkEdit_clicked()
 void bookmarks::on_bookmarkDelete_clicked()
 {
     QMessageBox message(QMessageBox::Question, tr("Delete Bookmark"), "Do you want to delete the bookmark?", QMessageBox::No | QMessageBox::Yes);
-    message.setWindowIcon(QIcon(":/app/icons/app-icons/Bookmarks.svg"));
+    message.setWindowIcon(QIcon(":/icons/bookmarks.svg"));
     message.setStyleSheet(Utilities::getStylesheetFileContent(Utilities::StyleAppName::DialogStyle));
 
     int merge = message.exec();
