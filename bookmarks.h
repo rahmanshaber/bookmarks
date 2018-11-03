@@ -27,6 +27,11 @@ along with this program; if not, see {http://www.gnu.org/licenses/}. */
 #include <QMessageBox>
 
 #include <cprime/bookmarkmanage.h>
+#include <cprime/themefunc.h>
+#include <cprime/settingsmanage.h>
+#include <cprime/validityfunc.h>
+#include <cprime/bookmarkdialog.h>
+#include <cprime/appopenfunc.h>
 
 
 namespace Ui {

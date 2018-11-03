@@ -22,7 +22,6 @@ along with this program; if not, see {http://www.gnu.org/licenses/}. */
 #include <QCommandLineParser>
 #include <QCommandLineOption>
 
-#include <cprime/utilities.h>
 #include <cprime/settingsmanage.h>
 
 
@@ -31,7 +30,7 @@ void startSetup()
     QApplication::setStyle(QStyleFactory::create("Fusion"));
 
     // set the requried folders
-    Utilities::setupFileFolder(Utilities::FileFolderSetup::BookmarkFolder);
+    CPrime::ValidityFunc::setupFileFolder(CPrime::FileFolderSetup::BookmarkFolder);
 
     // if setting file not exist create one with defult
     SettingsManage sm;

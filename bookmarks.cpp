@@ -17,11 +17,6 @@ along with this program; if not, see {http://www.gnu.org/licenses/}. */
 #include "bookmarks.h"
 #include "ui_bookmarks.h"
 
-#include <cprime/utilities.h>
-#include <cprime/settingsmanage.h>
-#include <cprime/globalfunctions.h>
-#include <cprime/bookmarkdialog.h>
-
 
 bookmarks::bookmarks(QWidget *parent) :QWidget(parent),ui(new Ui::bookmarks)
 {
@@ -37,11 +32,11 @@ bookmarks::bookmarks(QWidget *parent) :QWidget(parent),ui(new Ui::bookmarks)
     ui->boklist->setFocusPolicy(Qt::NoFocus);
 
     // set stylesheet from style.qrc
-    setStyleSheet(Utilities::getStylesheetFileContent(Utilities::StyleAppName::BookmarksStyle));
+    setStyleSheet(CPrime::ThemeFunc::getStyleSheetFileContent(CPrime::StyleTypeName::BookmarksStyle));
 
     // set window size
-    int x = static_cast<int>(Utilities::screensize().width()  * .8);
-    int y = static_cast<int>(Utilities::screensize().height()  * .7);
+    int x = static_cast<int>(CPrime::InfoFunc::screenSize().width()  * .8);
+    int y = static_cast<int>(CPrime::InfoFunc::screenSize().height()  * .7);
     this->resize(x, y);
 
     bk.checkBook();
@@ -132,7 +127,7 @@ void bookmarks::on_section_itemClicked(QListWidgetItem *item)
         dateTimeList.append(bk.bookingTime(ui->section->currentItem()->text(), list.at(i)));
     }
 
-    Utilities::sortDateTime(dateTimeList);
+    CPrime::SortFunc::sortDate(dateTimeList);
     QStringList mList;
     mList.clear();
     int reverse = count - 1;
@@ -151,7 +146,7 @@ void bookmarks::on_section_itemClicked(QListWidgetItem *item)
     QTableWidgetItem *items;
     for (int i = 0; i < count; i++) {
         items = new QTableWidgetItem(mList.at(i));
-        items->setIcon(Utilities::getFileIcon(bk.bookmarkPath(ui->section->currentItem()->text(), mList.at(i))));
+        items->setIcon(CPrime::ThemeFunc::getFileIcon(bk.bookmarkPath(ui->section->currentItem()->text(), mList.at(i))));
 
         ui->boklist->setItem(i, 0, items);
         ui->boklist->setItem(i, 1, new QTableWidgetItem(bk.bookmarkPath(ui->section->currentItem()->text(), mList.at(i))));
@@ -172,7 +167,7 @@ void bookmarks::on_deleteSection_clicked()
 {
     QMessageBox message(QMessageBox::Question, tr("Delete Section"), "Do you want to delete this section?", QMessageBox::No | QMessageBox::Yes);
     message.setWindowIcon(QIcon(":/icons/bookmarks.svg"));
-    message.setStyleSheet(Utilities::getStylesheetFileContent(Utilities::StyleAppName::DialogStyle));
+    message.setStyleSheet(CPrime::ThemeFunc::getStyleSheetFileContent(CPrime::StyleTypeName::DialogStyle));
 
     int merge = message.exec();
 
@@ -180,7 +175,7 @@ void bookmarks::on_deleteSection_clicked()
         bk.delSection(ui->section->currentItem()->text());
         ui->section->takeItem(ui->section->currentIndex().row());
         // Function from utilities.cpp
-        Utilities::messageEngine("Section Deleted", Utilities::MessageType::Info);
+        CPrime::InfoFunc::messageEngine("Section Deleted", CPrime::MessageType::Info ,this);
     }
     sectionRefresh();
 }
@@ -195,7 +190,7 @@ void bookmarks::on_sectionDone_clicked()
     ui->addSectionBox->setVisible(false);
 
     // Function from utilities.cpp
-    Utilities::messageEngine("Section Added", Utilities::MessageType::Info);
+    CPrime::InfoFunc::messageEngine("Section Added", CPrime::MessageType::Info,this);
     on_cTools_clicked();
 }
 
@@ -239,7 +234,7 @@ void bookmarks::on_bookmarkDelete_clicked()
 {
     QMessageBox message(QMessageBox::Question, tr("Delete Bookmark"), "Do you want to delete the bookmark?", QMessageBox::No | QMessageBox::Yes);
     message.setWindowIcon(QIcon(":/icons/bookmarks.svg"));
-    message.setStyleSheet(Utilities::getStylesheetFileContent(Utilities::StyleAppName::DialogStyle));
+    message.setStyleSheet(CPrime::ThemeFunc::getStyleSheetFileContent(CPrime::StyleTypeName::DialogStyle));
 
     int merge = message.exec();
     if (merge == QMessageBox::Yes) {
@@ -247,7 +242,7 @@ void bookmarks::on_bookmarkDelete_clicked()
         int r = ui->boklist->currentItem()->row();
         ui->boklist->removeRow(r);
         // Function from utilities.cpp
-        Utilities::messageEngine("Bookmark Deleted", Utilities::MessageType::Info);
+        CPrime::InfoFunc::messageEngine("Bookmark Deleted", CPrime::MessageType::Info,this);
     }
     ui->bookmarkCount->setText(QString::number(ui->boklist->rowCount()) + " item(s)");
     sectionRefresh();
@@ -267,7 +262,7 @@ void bookmarks::on_editDone_clicked()
         ui->boklist->removeRow(ui->boklist->currentRow());
     }
     // Function from utilities.cpp
-    Utilities::messageEngine("Edit Done", Utilities::MessageType::Info);
+    CPrime::InfoFunc::messageEngine("Edit Done", CPrime::MessageType::Info,this);
     sectionRefresh();
     on_editCancel_clicked();
 }
@@ -348,7 +343,7 @@ void bookmarks::on_boklist_itemDoubleClicked(QTableWidgetItem *item)
 {
     QString path = bk.bookmarkPath(ui->section->currentItem()->text(), ui->boklist->item(item->row(),0)->text());
     // Function from utilities.cpp
-    GlobalFunc::appSelectionEngine(path,this);
+    CPrime::AppOpenFunc::appSelectionEngine(path,this);
 }
 
 void bookmarks::on_boklist_itemSelectionChanged()
